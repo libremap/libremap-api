@@ -1,5 +1,7 @@
 syntax: glob
 node_modules
+tmp
+config.json
 *~
 *.bak
 *.orig
