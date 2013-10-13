@@ -1,4 +1,5 @@
 syntax: glob
+node_modules
 *~
 *.bak
 *.orig
