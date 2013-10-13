@@ -4,27 +4,27 @@ exports.strip = function strip(d) {
   /* walks through the obj and removes all 'attributes' */
   if (_.isArray(d)) {
     var arr=[];
-    for (var i=0, cur; cur=d[i++];) {
+    for (var i=0, cur; (cur=d[i++]);) {
       arr.push(strip(cur));
     }
     return arr;
   } else if (_.isObject(d)) {
     var obj = _.omit(d, 'attributes');
-    for (k in obj) {
+    for (var k in obj) {
       obj[k] = strip(obj[k]);
     }
     return obj;
   }
   return d;
-}
+};
 
 exports.router_coords = function(doc) {
   return {type: 'Point', coordinates: [doc.location.lon, doc.location.lat]};
-}
+};
 
 exports.exists = function(obj, key) {
   return obj.hasOwnProperty(key);
-}
+};
 
 exports.assertType = function(v, type, err) {
   if (typeof(v) != type) {
@@ -34,19 +34,19 @@ exports.assertType = function(v, type, err) {
     return false;
   }
   return true;
-}
+};
 
 exports.assertNumber = function (v, err) {
   return exports.assertType(v, "number", err);
-}
+};
 
 exports.assertString = function (v, err) {
   return exports.assertType(v, "string", err);
-}
+};
 
 exports.assertObject = function (v, err) {
   return exports.assertType(v, "object", err);
-}
+};
 
 exports.assertArray = function (v, err) {
   if (Object.prototype.toString.call(v) !== '[object Array]') {
@@ -56,12 +56,12 @@ exports.assertArray = function (v, err) {
     return false;
   }
   return true;
-}
+};
 
 exports.assertVersionString = function(v, err) {
   exports.assertString(v, err);
   // TODO
-}
+};
 
 // tests if the field is a valid date
 // by checking invariance under ( new Date(...) ).toISOString()
@@ -74,11 +74,11 @@ exports.assertDate = function(v, err) {
     return false;
   }
   return true;
-}
+};
 
 exports.getDate = function () {
   return (new Date()).toISOString();
-}
+};
 
 exports.assertBbox = function(bbox, err) {
   var msg = "bounding box expected: " + bbox;
@@ -97,11 +97,11 @@ exports.assertBbox = function(bbox, err) {
     }
   }
   return true;
-}
+};
 
 exports.isInBbox = function (lat, lon, bbox) {
   if (!exports.assertBbox(bbox)) {
     return false;
   }
   return bbox[0]<=lon && lon<=bbox[2] && bbox[1]<=lat && lat<=bbox[3];
-}
+};

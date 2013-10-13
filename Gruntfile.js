@@ -20,6 +20,9 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     // lint js files
     jshint: {
+      options: {
+        '-W025': true // Missing name in function declaration.
+      },
       files: ['ddoc/**/*.js']
     },
     'couch-compile': {
@@ -39,5 +42,5 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['jshint']);
-  grunt.registerTask('push', ['couch']);
+  grunt.registerTask('push', ['jshint', 'couch']);
 };

@@ -6,10 +6,10 @@ function(doc, req){
   // sanitize input
   if (!common.assertArray(parameters.ids)) {
     parameters.ids = [];
-  };
+  }
   if (!common.assertBbox(parameters.bbox)) {
     parameters.bbox = [0,0,0,0];
-  };
+  }
 
   if (parameters.ids.indexOf(doc._id)>=0 ||
       doc.type=="router" &&

@@ -1,6 +1,8 @@
-function validate(newDoc, oldDoc, userCtx, secObj) {
+function (newDoc, oldDoc, userCtx, secObj) {
   // validation according to
   // https://github.com/libre-mesh/libremap/blob/master/doc-api.md
+
+  var com = require('views/lib/libremap-common');
 
   var common = require('views/lib/common');
 
@@ -52,14 +54,14 @@ function validate(newDoc, oldDoc, userCtx, secObj) {
     common.assertDate(ctime, err);
     var compare_time = (new Date( (new Date()).getTime() + 5*60*1000 )).toISOString();
     if (ctime > compare_time) {
-      err('future dates not allowed in field ctime: ' + newDoc['ctime']);
+      err('future dates not allowed in field ctime: ' + newDoc.ctime);
     }
 
     required('mtime');
     var mtime = newDoc.mtime;
     common.assertDate(mtime, err);
     if (mtime > compare_time) {
-      err('future dates not allowed in field mtime: ' + newDoc['mtime']);
+      err('future dates not allowed in field mtime: ' + newDoc.mtime);
     }
     if (mtime < ctime) {
       err('mtime < ctime not allowed');
@@ -86,7 +88,7 @@ function validate(newDoc, oldDoc, userCtx, secObj) {
 
     if (common.exists('aliases')) {
       common.assertArray(newDoc.aliases, err);
-      for (var i=0, alias; alias=newDoc['aliases'][i++];) {
+      for (var i=0, alias; (alias=newDoc.aliases[i++]);) {
         required(alias, 'alias');
         common.assertString(alias.alias, err);
         if (common.exists(alias, 'type')) {
@@ -97,7 +99,7 @@ function validate(newDoc, oldDoc, userCtx, secObj) {
 
     if (common.exists('links')) {
       common.assertArray(newDoc.links, err);
-      for (var i=0, link; link=newDoc['links'][i++];) {
+      for (var j=0, link; (link=newDoc.links[j++]);) {
         required(link, 'alias');
         common.assertString(link.alias, err);
         if (common.exists(link, 'type')) {

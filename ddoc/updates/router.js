@@ -12,13 +12,15 @@ function (doc, req) {
     return [null, {code: code, body: toJSON({'error': msg})}];
   }
 
+  var newdoc = null;
+
   // update document
   if (req.method=="PUT" && doc) {
     if (!doc) {
       return err(404, 'document not found');
     }
 
-    var newdoc = JSON.parse(req.body);
+    newdoc = JSON.parse(req.body);
     // set timestamps
     newdoc.mtime = common.getDate();
 
@@ -29,7 +31,7 @@ function (doc, req) {
 
   // create document (doc does not exist)
   } else if ((req.method=="PUT" && !doc) || req.method=="POST") {
-    var newdoc = JSON.parse(req.body);
+    newdoc = JSON.parse(req.body);
     if (req.method=="PUT") {
       if (!req.id) {
         return err(400, 'PUT requires id in URL');
