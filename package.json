@@ -23,6 +23,10 @@
     "grunt-contrib-jshint": "~0.6.4",
     "underscore": "~1.5.2",
     "grunt-couch": "~1.2.3",
-    "libremap-common": "~0.1.0"
+    "libremap-common": "~0.1.0",
+    "browserify": "~2.33.1",
+    "grunt-browserify": "~1.2.8",
+    "grunt-replace": "~0.5.1",
+    "grunt-contrib-concat": "~0.3.0"
   }
 }
