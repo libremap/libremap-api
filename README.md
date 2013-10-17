@@ -2,7 +2,22 @@
 
 LibreMap is a **scalable**, **global** and **decentralized** router database and map visualization for community networks, such as guifi, Altermundi, FunkFeuer, ninux, freifunk, Commotion... It emerged around the [is4cwn](http://2013.wirelesssummit.org/) by merging the maps of [AlterMap](https://colectivo.altermundi.net/projects/altermap) (Altermundi) and [OpenWiFiMap](https://github.com/freifunk/openwifimap-html5) (freifunk).
 
-**See the map in action at the [libremap.net](http://libremap.net) instance!**
+LibreMap consists of 2 main parts:
+* **[libremap-webui](https://github.com/libremap/libremap-webui):** the HTML5 web app.
+* **libremap-api:** the CouchDB server design document that exposes the *LibreMap API*.
+
+## Set up your own LibreMap server
+### Requirements
+You need the following:
+* CouchDB server with the [GeoCouch](https://github.com/couchbase/geocouch/) plugin.
+* [node.js](http://nodejs.org/) (>= 0.8.0) and its great package manager `npm`.
+* [Grunt](http://gruntjs.com/) - can be installed by running: ```npm install -g grunt-cli```
+
+### Installation
+1. Clone the repo: ```git clone git@github.com:libremap/libremap-api.git``` and change to the repo dir: ```cd libremap-api```.
+2. Download dependencies: ```npm install```.
+3. Copy `config.json.example` to `config.json` and configure your CouchDB server there.
+4. Push the CouchDB design document to your server (for example the `dev` target in `config.json`) by running ```grunt push --couch dev```.
 
 ## Goals of LibreMap:
 * show the state of all community networks, both on a global and local scale.
