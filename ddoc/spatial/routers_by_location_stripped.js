@@ -1,6 +1,6 @@
 function map(doc) {
-  var common = require('views/lib/common');
+  var common = require('views/lib/libremap-common');
   if (doc.type=='router') {
-    emit(common.router_coords(doc), common.strip(doc));
+    emit(common.router_coords(doc), common.router_strip(doc));
   }
 }

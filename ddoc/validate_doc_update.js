@@ -34,7 +34,7 @@ function (newDoc, oldDoc, userCtx, secObj) {
   }
 
   if (newDoc.type == 'router') {
-    var val = common.validate_router(newDoc);
+    var val = common.router_validate(newDoc);
     if (val) {
       err(val);
     }
