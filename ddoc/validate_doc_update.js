@@ -8,7 +8,7 @@ function (newDoc, oldDoc, userCtx, secObj) {
   }
 
   function unchanged(key) {
-    if (oldDoc && !common._.isequal(oldDoc[key], newDoc[key])) {
+    if (oldDoc && !common._.isEqual(oldDoc[key], newDoc[key])) {
       err("key can't be changed: " + key);
     }
   }

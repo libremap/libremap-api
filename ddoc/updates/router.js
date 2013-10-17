@@ -6,8 +6,6 @@ function (doc, req) {
     DELETE /router/:id  delete id
   */
 
-  var common = require('views/lib/common');
-
   function err(code, msg) {
     return [null, {code: code, body: toJSON({'error': msg})}];
   }
@@ -22,7 +20,7 @@ function (doc, req) {
 
     newdoc = JSON.parse(req.body);
     // set timestamps
-    newdoc.mtime = common.getDate();
+    newdoc.mtime = (new Date()).toISOString();
 
     return [newdoc, {
         code: 201,
@@ -56,7 +54,7 @@ function (doc, req) {
     }
 
     // set timestamps
-    var time = common.getDate();
+    var time = (new Date()).toISOString();
     newdoc.ctime = time;
     newdoc.mtime = time;
 

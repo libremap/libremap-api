@@ -1,13 +1,14 @@
 function(doc, req){
-  var common = require('views/lib/common');
+  var common = require('views/lib/libremap-common');
 
   var parameters = JSON.parse(req.body);
 
   // sanitize input
-  if (!common.assertArray(parameters.ids)) {
+
+  if (!common.isType(parameters.ids, 'array')) {
     parameters.ids = [];
   }
-  if (!common.assertBbox(parameters.bbox)) {
+  if (!common.isType(parameters.bbox, 'bbox')) {
     parameters.bbox = [0,0,0,0];
   }
 
