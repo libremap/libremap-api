@@ -8,13 +8,11 @@ function(doc, req){
   if (!common.isType(parameters.ids, 'array')) {
     parameters.ids = [];
   }
-  if (!common.isType(parameters.bbox, 'bbox')) {
-    parameters.bbox = [0,0,0,0];
-  }
+  var bbox = common.bbox(parameters.bbox);
 
   if (parameters.ids.indexOf(doc._id)>=0 ||
-      doc.type=="router" &&
-      common.isInBbox(doc.location.lat, doc.location.lon, parameters.bbox)) {
+      doc.type=="router" && bbox &&
+      bbox.contains(doc.location.lat, doc.location.lon)) {
     return true;
   }
 
