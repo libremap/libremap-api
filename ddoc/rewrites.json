@@ -61,6 +61,13 @@
     }
   },
   {
+    "from": "routers_coarse",
+    "to": "_view/routers_coarse",
+    "query": {
+      "group": "true"
+    }
+  },
+  {
     "from": "changes",
     "to": "../../_changes"
   },
