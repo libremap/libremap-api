@@ -2,7 +2,8 @@
   "instances": [
     {
       "name": "LibreMap.net",
-      "url": "http://libremap.net"
+      "api_url": "http://libremap.net/api",
+      "webui_url": "http://libremap.net"
     }
   ]
   }
