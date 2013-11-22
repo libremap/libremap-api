@@ -2,7 +2,7 @@ syntax: glob
 node_modules
 npm-debug.log
 tmp
-config.json
+couch.json
 *~
 *.bak
 *.orig

@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-  var config = grunt.file.readJSON('config.json');
+  var config = grunt.file.readJSON('couch.json');
 
   var couch = grunt.option('couch') || 'localhost';
   var couchpushopts = null;
