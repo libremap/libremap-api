@@ -170,3 +170,36 @@ When querying for a large set of given keys a POST request should be used with t
 #### By alias
 
 A [Standard view](#standard-views) where the keys are objects with the fields `alias` and `type`, e.g. `{"alias":"awesome-router","type":"olsr"}`.
+
+#### Coarse
+
+A [Standard view](#standard-views) where the keys are zoom levels and tile (see [OSM slippy map tilenames](http://wiki.openstreetmap.org/wiki/Slippy_map_tilenames), e.g. `[3, 2, 4]` is zoom level 3, x coordinate 2 and y coordinate 4.
+
+Example:
+```
+curl -X POST -d '{"keys":[[3,2,4],[3,3,4]]}' http://dev.libremap.net/api/routers_coarse?stale=update_after
+```
+The (prettified) answer looks like:
+```
+{
+  "rows":
+  [
+    {
+      "key": [3,2,4],
+      "value": {
+        "count": 385,
+        "lat": -23.791737619878077226,
+        "lon": -64.324414471674529636,
+        "bbox_west": -76.960357922733635405,
+        "bbox_east":-58.352922283615058063,
+        "bbox_south":-34.650987461699898518,
+        "bbox_north":-0.0049836851090863110159
+      }
+    }
+  ]
+}
+```
+If a key is not contained in the view, it is omitted from the result. The `value` contains:
+* `count`: the number of routers in the area of the tile,
+* `lat`,`lon`: the arithmetic mean of the latitudes and longitudes (`lat`,`lon`),
+* `bbox_*`: the bounding box of all routers (might be significantly smaller than the tile).
