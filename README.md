@@ -4,20 +4,7 @@ LibreMap is a **scalable**, **global** and **decentralized** router database and
 
 LibreMap consists of 2 main parts:
 * **[libremap-webui](https://github.com/libremap/libremap-webui):** the HTML5 web app.
-* **libremap-api:** the CouchDB server design document that exposes the *LibreMap API*.
-
-## Set up your own LibreMap server
-### Requirements
-You need the following:
-* CouchDB server with the [GeoCouch](https://github.com/couchbase/geocouch/) plugin.
-* [node.js](http://nodejs.org/) (>= 0.8.0) and its great package manager `npm`.
-* [Grunt](http://gruntjs.com/) - can be installed by running: ```npm install -g grunt-cli```
-
-### Installation
-1. Clone the repo: ```git clone git@github.com:libremap/libremap-api.git``` and change to the repo dir: ```cd libremap-api```.
-2. Download dependencies: ```npm install```.
-3. Copy `config.json.example` to `config.json` and configure your CouchDB server there.
-4. Push the CouchDB design document to your server (for example the `dev` target in `config.json`) by running ```grunt push --couch dev```.
+* **libremap-api (this repo!):** the CouchDB server design document that exposes the *LibreMap API*.
 
 ## Goals of LibreMap:
 * show the state of all community networks, both on a global and local scale.
@@ -26,32 +13,15 @@ You need the following:
 * independent of involved routing protocols and other technical details.
 * scale up to global level (>100k routers).
 * share open data for community networks.
-
-## Join the LibreMap network!
-
-If you're interested in setting up an LibreMap instance, then head over to the [docs](#documentation) and don't be shy if you have questions -- [get in touch](#contact) with us!. When your instance is up and running, please include it in the [libremap-instances.json](libremap-instances.json) file of this repo.
-
-## Overview
+![Replication illustration](http://libre-mesh.github.io/libremap-talk-2013-is4cwn/images/replication.svg)
 
 There's a presentation ([slides](http://libre-mesh.github.io/libremap-talk-2013-is4cwn/)) from the [is4cwn](http://2013.wirelesssummit.org/) that explains the concept and some details.
 
-### Database
-* The database API code resides under `/api`.
-* Built with [CouchDB](http://couchdb.apache.org) and [GeoCouch](https://github.com/couchbase/geocouch/).
-* HTTP REST API.
-* Decentralized/federated with CouchDB's built-in replication.
-* Each community can set up its own LibreMap instance (see the [install docs](doc-install.md)) and let it replicate to/from existing instances (see the list of [LibreMap instances](libremap-instances.json)). The replication may look like this:
-![Replication illustration](http://libre-mesh.github.io/libremap-talk-2013-is4cwn/images/replication.svg)
 
-### HTML webui
-* The HTML webui code resides under `/webui`.
-* Runs as a [CouchApp](http://couchapp.org/page/index) (no need for a separate HTTP server beside CouchDB!).
-
-### openwrt submit agent
-* The submit agent code resides under `/agent`.
+## Join the LibreMap network!
+If you're interested in setting up an LibreMap instance, then head over to the [docs](#documentation) and don't be shy if you have questions -- [get in touch](#contact) with us!. When your instance is up and running, please include it in the [libremap-instances.json](libremap-instances.json) file of this repo.
 
 ## Documentation
-
 * [Install documentation](doc-install.md)
 * [API documentation](doc-api.md)
 
