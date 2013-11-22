@@ -17,4 +17,4 @@ Feel free to use the API of the [libremap.net](http://libremap.net) instance, wh
 | /api/router/:id      | DELETE      | [Router](doc-api-router.md)    | Delete router doc with ID :id |
 | /api/routers_by_location[_stripped]/:bbox | GET | [Views](doc-router.md) | Get routers by geolocation bounding box :bbox |
 | /api/routers_by_alias[_stripped]    | GET, POST | [Views](doc-router.md) | Get routers by alias |
-
+| /api/routers_coarse  | POST        | [Views](doc-router.md) | Get clusters of routers |
