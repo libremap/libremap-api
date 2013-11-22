@@ -14,7 +14,7 @@ module.exports = function(grunt) {
     var files = {};
     files[config.couches[couch].database] = 'tmp/libremap-api.json';
     couchpushopts[couch] = { files: files};
-  };
+  }
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -26,7 +26,7 @@ module.exports = function(grunt) {
       files: ['ddoc/**/*.js', 'vendor/**/*.js']
     },
     replace: {
-      glue: {
+      'glue-libremap-common': {
         options: { patterns: [ {
           match: 'module', replacement: 'libremap-common'
         }]},
@@ -37,19 +37,42 @@ module.exports = function(grunt) {
           }
         ]
       },
+      'glue-couchmap-common': {
+        options: { patterns: [ {
+          match: 'module', replacement: 'couchmap-common'
+        }]},
+        files: [
+          {
+            src: ['couchdb-browserify-glue-module.js'],
+            dest: 'tmp/couchmap-common.glue'
+          }
+        ]
+      }
     },
     browserify: {
-      glue: {
+      'glue-libremap-common': {
         dest: 'tmp/libremap-common.js',
         src: ['tmp/libremap-common.glue'],
-        options: {
-        }
+      },
+      'glue-couchmap-common': {
+        dest: 'tmp/couchmap-common.js',
+        src: ['tmp/couchmap-common.glue'],
       }
     },
     concat: {
-      glue: {
-        src: ['tmp/libremap-common.js', 'couchdb-browserify-glue-footer.js'],
+      'glue-libremap-common': {
+        src: [
+        'tmp/libremap-common.js',
+        'couchdb-browserify-glue-footer.js'
+        ],
         dest: 'tmp/merge/views/lib/libremap-common.js'
+      },
+      'glue-couchmap-common': {
+        src: [
+        'tmp/couchmap-common.js',
+        'couchdb-browserify-glue-footer.js'
+        ],
+        dest: 'tmp/merge/views/lib/couchmap-common.js'
       }
     },
     'couch-compile': {
@@ -72,5 +95,11 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['jshint']);
-  grunt.registerTask('push', ['jshint', 'replace:glue', 'browserify', 'concat', 'couch']);
+  grunt.registerTask('push', [
+    'jshint',
+    'replace',
+    'browserify',
+    'concat',
+    'couch'
+  ]);
 };
