@@ -1,26 +1,13 @@
-# LibreMap install documentation
+# Set up your own LibreMap server
 
-## Prerequisites
-* [CouchDB](https://couchdb.apache.org/) 1.3 or newer.
-* [GeoCouch](https://github.com/couchbase/geocouch/) plugin. You can build CouchDB with GeoCouch with the [build-couchdb](https://github.com/iriscouch/build-couchdb) tool.
-* [erica](https://github.com/benoitc/erica).
+## Requirements
+You need the following:
+* CouchDB server 1.3 (or newer) with the [GeoCouch](https://github.com/couchbase/geocouch/) plugin.
+* [node.js](http://nodejs.org/) (>= 0.8.0) and its great package manager `npm`.
+* [Grunt](http://gruntjs.com/) - can be installed by running: ```npm install -g grunt-cli```
 
 ## Installation
-* Install the [prerequisites](#prerequisites).
-* Create a new database in your CouchDB instance. We assume that your databaseis located at `http://HOST/DB` and that you have an admin user with username/password `USER`/`PASS`.
-* Clone the libremap repository, e.g. `git clone git@github.com:libre-mesh/libremap.git`.
-* Upload the API and webui design documents by issuing:
-
-    ```
-    cd libremap/api
-    erica push http://USER:PASS@HOST/DB
-    cd ../webui
-    erica push http://USER:PASS@HOST/DB
-    ```
-  The webui should now be running at `http://HOST/DB/_design/libremap-webui/_rewrite`.
-* Configure a vhost. If you have a domain at hand, let's say `DOMAIN`, then let it point to your CouchDB server and add the following section to your CouchDB configuration (`http://HOST/_utils/config.html`):
-  * section: `vhosts`.
-  * option: `DOMAIN`.
-  * value: `/DB/_design/libremap-webui/_rewrite`.
-  
-  Enjoy libremap at `http://DOMAIN/`! The API of your instance is located at `http://DOMAIN/api`, see the [API documentation](doc-api.md).
+1. Clone the repo: ```git clone git@github.com:libremap/libremap-api.git``` and change to the repo dir: ```cd libremap-api```.
+2. Download dependencies: ```npm install```.
+3. Copy `couch.json.example` to `couch.json` and configure your CouchDB server there.
+4. Push the CouchDB design document to your server (for example the `dev` target in `config.json`) by running ```grunt push --couch dev```.
