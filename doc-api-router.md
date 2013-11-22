@@ -43,10 +43,9 @@ curl -X DELETE http://libremap.net/api/router/d3e7183695687af88617e253d702ccf6
 * `hostname`: (required, string) displayed name of the router.
 * `ctime`: (required, string) creation time in UTC of the form `"2013-05-11T13:05:22.000Z"` (is set automatically by update handler).
 * `mtime`: (required, string) modification time, see `ctime`.
-* `location`: (required, object)
-  * `lat`: (required, number) latitude in degrees, range [-90,90], EPSG:3857.
-  * `lon`: (required, number) longitude in degrees, range [-180,180], EPSG:3857.
-  * `elev`: (optional, number) elevation in meters above mean sea level.
+* `lat`: (required, number) latitude in degrees, range [-90,90], EPSG:3857.
+* `lon`: (required, number) longitude in degrees, range [-180,180], EPSG:3857.
+* `elev`: (optional, number) elevation in meters above mean sea level.
 * `aliases`: (optional, array): each element is an object with the following keys:
   * `alias`: (required, string): alias name under which the router is known (for example in OLSR- or BATMAN-networks). Note that MAC-addresses or other information may be stored here. You may want to use a hash of MAC-addresses for privacy reasons. If you do that, just make sure that the same hash function is used for the `links`, see below.
   * `type`: (optional, string) this value may, for example, describe the routing protocol where the router is known under this alias, see the [example](#json-example) below.
@@ -69,11 +68,9 @@ curl -X DELETE http://libremap.net/api/router/d3e7183695687af88617e253d702ccf6
   "hostname": "awesome-router",
   "ctime": "2013-05-11T13:05:22.000Z",
   "mtime": "2013-09-12T11:14:12.000Z",
-  "location": {
-    "lat": -31.805412,
-    "lon": -64.424677,
-    "elev": 50
-  },
+  "lat": -31.805412,
+  "lon": -64.424677,
+  "elev": 50,
   "aliases": [
     {
       "alias": "104.201.0.29",
