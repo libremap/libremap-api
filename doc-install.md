@@ -11,3 +11,7 @@ You need the following:
 2. Download dependencies: ```npm install```.
 3. Copy `couch.json.example` to `couch.json` and configure your CouchDB server there.
 4. Push the CouchDB design document to your server (for example the `dev` target in `config.json`) by running ```grunt push --couch dev```.
+
+## Further information
+
+* Frank Asoh shares experiences with his LibreMap installation for Antwerpen on his [blog](http://internshipua.blogspot.be/).
