@@ -47,11 +47,12 @@ curl -X DELETE http://libremap.net/api/router/d3e7183695687af88617e253d702ccf6
 * `lon`: (required, number) longitude in degrees, range [-180,180], EPSG:3857.
 * `elev`: (optional, number) elevation in meters above mean sea level.
 * `aliases`: (optional, array): each element is an object with the following keys:
+  * `type`: (required, string) this value may, for example, describe the routing protocol where the router is known under this alias, see the [example](#json-example) below.
   * `alias`: (required, string): alias name under which the router is known (for example in OLSR- or BATMAN-networks). Note that MAC-addresses or other information may be stored here. You may want to use a hash of MAC-addresses for privacy reasons. If you do that, just make sure that the same hash function is used for the `links`, see below.
-  * `type`: (optional, string) this value may, for example, describe the routing protocol where the router is known under this alias, see the [example](#json-example) below.
 * `links`: (optional, array) each element is an object with the following keys:
-  * `alias`: (required, string) an alias name of the remote router.
-  * `type`: (optional, string) the alias type of the remote router, see `aliases` above.
+  * `type`: (required, string) the alias type of the remote router, see `aliases` above.
+  * `alias_local`: (required, string) an alias name of this router (the `alias`-`type` pair should also be contained in the `aliases` field).
+  * `alias_remote`: (required, string) an alias name of the remote router.
   * `quality`: (optional, number) quality of the link, in range [0, 1] where 0 is the poorest and 1 is the best link quality.
   * `attributes`: (optional, object) you may store arbitrary information for a link here, e.g. link information that depends on the routing protocol (like LQ, NLQ and ETX values in OLSR).
 * `site`: (optional, string) a site this router belongs to, e.g. `"roof town hall"`.
@@ -73,22 +74,24 @@ curl -X DELETE http://libremap.net/api/router/d3e7183695687af88617e253d702ccf6
   "elev": 50,
   "aliases": [
     {
-      "alias": "104.201.0.29",
-      "type": "olsr"
+      "type": "olsr",
+      "alias": "104.201.0.29"
+      
     },
     {
-      "alias": "awesome-router.olsr",
-      "type": "olsr"
+      "type": "olsr",
+      "alias": "awesome-router.olsr"
     },
     {
-      "alias": "21:13:f1:a5:a2:20",
-      "type": "batman-adv"
+      "type": "batman-adv",
+      "alias": "21:13:f1:a5:a2:20"
     }
   ],
   "links": [
     {
-      "alias": "104.201.0.64",
       "type": "olsr",
+      "alias_local": "104.201.0.29",
+      "alias_remote": "104.201.0.64",
       "quality": 0.78,
       "attributes": {
         "etx": 2.094,
@@ -97,8 +100,9 @@ curl -X DELETE http://libremap.net/api/router/d3e7183695687af88617e253d702ccf6
       }
     },
     {
-      "alias": "52:23:61:a7:a1:56",
       "type": "batman-adv",
+      "alias_local":"21:13:f1:a5:a2:20",
+      "alias_remote": "52:23:61:a7:a1:56",
       "quality": 0.78
     }
   ],
@@ -166,7 +170,7 @@ When querying for a large set of given keys a POST request should be used with t
 
 #### By alias
 
-A [Standard view](#standard-views) where the keys are objects with the fields `alias` and `type`, e.g. `{"alias":"awesome-router","type":"olsr"}`.
+A [Standard view](#standard-views) where the keys are objects with the fields `alias` and `type`, e.g. `{"type":"olsr", "alias":"awesome-router"}`.
 
 #### Coarse
 
