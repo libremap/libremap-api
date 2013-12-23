@@ -72,6 +72,10 @@
     "to": "../../_changes"
   },
   {
+    "from": "_uuids",
+    "to": "../../../_uuids"
+  },
+  {
     "from": "*",
     "to": "_view/*"
   }
