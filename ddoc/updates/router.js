@@ -20,6 +20,7 @@ function (doc, req) {
 
     newdoc = JSON.parse(req.body);
     // set timestamps
+    newdoc.ctime = newdoc.ctime || doc.ctime;
     newdoc.mtime = (new Date()).toISOString();
 
     return [newdoc, {
