@@ -15,3 +15,5 @@ You need the following:
 ## Further information
 
 * Frank Asoh shares experiences with his LibreMap installation for Antwerpen on his [blog](http://internshipua.blogspot.be/).
+
+* Réseau Libre also publishes a complete guide to LibreMap installation on their [wiki](http://wiki.reseaulibre.ca/documentation/libremap/installation/).
