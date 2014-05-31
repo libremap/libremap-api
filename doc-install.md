@@ -12,6 +12,21 @@ You need the following:
 3. Copy `couch.json.example` to `couch.json` and configure your CouchDB server there.
 4. Push the CouchDB design document to your server (for example the `dev` target in `config.json`) by running ```grunt push --couch dev```.
 
+## Repication
+
+We would like to see more communities sharing their data with other communities. To set up a replication a new document has to be added to the automaticaly generated database **_replicator**:
+
+```
+{
+   "_id": "libremap.net-up",
+   "source": "libremap",
+   "target": "http://libremap.net/api/db",
+   "continuous": true,
+}
+```
+
+To restart couchdb after doing that should not hurt... 
+
 ## Further information
 
 * Frank Asoh shares experiences with his LibreMap installation for Antwerpen on his [blog](http://internshipua.blogspot.be/).
