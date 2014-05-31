@@ -28,7 +28,7 @@ There's a presentation ([slides](http://libre-mesh.github.io/libremap-talk-2013-
 If you're interested in setting up an LibreMap instance, then head over to the [docs](#documentation) and don't be shy if you have questions -- [get in touch](#contact) with us!. When your instance is up and running, please include it in the [libremap-instances.json](libremap-instances.json) file of this repo.
 
 ## Documentation
-* [Install documentation](doc-install.md)
+* [Installation and replication](doc-install.md)
 * [API documentation](doc-api.md)
 
 ## Bugs and feature requests
