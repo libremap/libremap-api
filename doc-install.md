@@ -12,9 +12,9 @@ You need the following:
 3. Copy `couch.json.example` to `couch.json` and configure your CouchDB server there.
 4. Push the CouchDB design document to your server (for example the `dev` target in `config.json`) by running ```grunt push --couch dev```.
 
-## Repication
+## Replication
 
-We would like to see more communities sharing their data with other communities. To set up a replication a new document has to be added to the automaticaly generated database **_replicator**:
+We would like to see more communities sharing their data with other communities. A one-shot replication can be carried out through CouchDB's web interface Futon (*Tools* -> *Replicator*). In order to set up a persistent replication, a new document has to be added to the automaticaly generated database **_replicator**:
 
 ```
 {
@@ -25,7 +25,7 @@ We would like to see more communities sharing their data with other communities.
 }
 ```
 
-To restart couchdb after doing that should not hurt... 
+After such a document has been added, the replication is persistent and thus the replication will continue after restarts of CouchDB.
 
 ## Further information
 
