@@ -62,9 +62,16 @@ def main():
     ]
 
     # delete docs
-    db.update(delete_docs)
+    delete_res = db.update(delete_docs)
 
-    print('{0} documents have been deleted.'.format(len(delete_docs)))
+    nfail = 0
+    for res in delete_res:
+        if not res[0]:
+            nfail += 1
+
+    print('{0} documents have been deleted ({1} failed).'.format(
+        len(delete_docs) - nfail,
+        nfail))
 
 
 if __name__ == '__main__':
