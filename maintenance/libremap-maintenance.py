@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 '''Run maintenance jobs for LibreMap.
 
 This script runs the following maintenance jobs:
